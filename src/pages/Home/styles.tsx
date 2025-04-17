@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { device } from "../../utils/layoutBreakpoints";
 
 export const HomeContainer = styled.div`
     background-color: #FFF6E2;
@@ -9,6 +10,10 @@ export const HomeContainer = styled.div`
     width: 100%;
     min-height: 100dvh;
     padding-bottom:32px;
+
+    @media ${device.mobile} {
+        height: 100dvh;
+    }
 `
 export const HomeContent = styled.div`
     display: flex;
@@ -19,6 +24,7 @@ export const HomeContent = styled.div`
     padding: 32px;
     box-sizing: border-box;
     gap: 16px;
+    
 `
 
 export const BoxBlue = styled.div`
@@ -35,7 +41,21 @@ export const BoxBlue = styled.div`
     box-shadow: 8px 8px 0px -2px rgba(26,26,26,1);
     -webkit-box-shadow: 8px 8px 0px -2px rgba(26,26,26,1);
     -moz-box-shadow: 8px 8px 0px -2px rgba(26,26,26,1);
+
+    @media ${device.mobile} {
+        padding: 16px;
+    }
 `;
+
+export const LogoImg = styled.img`
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+
+    @media ${device.mobile} {
+        margin: 16px 0;
+    }
+`
 
 export const HomeSubtitle = styled.h2`
     font-size: 24px;
@@ -43,6 +63,9 @@ export const HomeSubtitle = styled.h2`
     color: #000000;
     text-align: center;
     margin:unset;
+    @media ${device.mobile} {
+        font-size: 20px;
+    }
 `
 
 export const BoxWhite = styled.div`
@@ -62,6 +85,12 @@ export const BoxWhite = styled.div`
         margin: unset;
         font-size: 24px;
     }
+    @media ${device.mobile} {
+        h2{
+            font-size: 20px;
+            text-align: center;
+        }
+    }
 `;
 
 export const SelectionSection = styled.section`
@@ -69,6 +98,9 @@ export const SelectionSection = styled.section`
     flex-direction: column;
     gap:32px;
     width: 60%;
+    @media ${device.tablet} {
+        width: 100%;
+    }
 `
 export const SelectActions = styled.div`
     display: flex;
@@ -76,6 +108,11 @@ export const SelectActions = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    @media ${device.tablet} {
+        h3{
+            display: none;
+        }
+    }
 `
 
 export const SelectButton = styled(Link)`
@@ -106,6 +143,16 @@ export const SelectButton = styled(Link)`
     &:hover{
         animation: shake-vertical 0.5s ease-in-out forwards;
     }
+
+    @media ${device.laptop} {
+        width: 40%;
+    }
+    @media ${device.tablet} {
+        width: 45%;
+    }
+    @media ${device.mobile} {
+        width: 48%;
+    }
 `
 
 export const MascotContainer = styled.div`
@@ -114,5 +161,10 @@ export const MascotContainer = styled.div`
     img{
         margin:16px;
         height: 170px;
+    }
+    @media ${device.mobile} {
+        img{
+            height: 120px;
+        }
     }
 `

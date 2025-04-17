@@ -4,6 +4,7 @@ import {
   HomeContainer,
   HomeContent,
   HomeSubtitle,
+  LogoImg,
   MascotContainer,
   SelectActions,
   SelectButton,
@@ -18,7 +19,7 @@ function Home() {
     <HomeContainer>
       <HomeContent>
         <BoxBlue>
-          <img alt="Logo do Responde AI" aria-label="Logo do Responde AI" src={Logo} />
+          <LogoImg alt="Logo do Responde AI" aria-label="Logo do Responde AI" src={Logo} />
           <HomeSubtitle>Educação divertida começa aqui!</HomeSubtitle>
         </BoxBlue>
         <BoxBlue>
