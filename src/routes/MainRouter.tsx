@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "../pages/Home/index.tsx";
+import StudentProfile from "../pages/StudentProfile/index.tsx";
 
 
 function MainRouter() {
@@ -18,7 +19,7 @@ function MainRouter() {
         <Route path="/professor/alunos-turmas" element={<h1>Alunos e turmas</h1>} />
 
         {/* Fluxo do aluno */}
-        <Route path="/aluno/perfil" element={<h1>Perfil do Aluno</h1>} />
+        <Route path="/aluno/perfil" element={<StudentProfile/>} />
         <Route path="/aluno/quizzes" element={<h1>Quizzes Disponíveis</h1>} />
         <Route path="/aluno/quiz/:id" element={<h1>Quiz</h1>} />
         <Route path="/aluno/quiz/:id/resultado" element={<h1>Quiz Resultado</h1>} />
