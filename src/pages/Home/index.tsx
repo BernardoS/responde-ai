@@ -38,7 +38,7 @@ function Home() {
                 </span>
               </SelectButton>
               <h3>OU</h3>
-              <SelectButton to="/aluno/perfil">
+              <SelectButton to="/aluno/home">
                 <MascotContainer>
                   <img src={StudentMascot} alt="Mascote do aluno" />
                 </MascotContainer>

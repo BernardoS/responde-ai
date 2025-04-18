@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { device } from "../../utils/layoutBreakpoints";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   background-color: #91C8FF;
@@ -71,10 +72,15 @@ export const Card = styled.div`
   box-shadow: 4px 4px 0px #000;
   border: 2px solid #000000;
   width: 50%;
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 32px;
+
   @media ${device.desktop} {
     width: 100%;
     margin: 16px 0;
+    padding-bottom: unset;
   }
 `;
 
@@ -91,6 +97,10 @@ export const MascotContainer = styled.div`
   flex-direction: column;
   margin: 16px;
   width: 40%;
+  margin-top: 32px;
+  @media ${device.desktop} {
+    margin:unset;
+  }
 `;
 
 export const StatusContainer = styled.div`
@@ -116,6 +126,9 @@ export const Level = styled.div`
   border: 2px solid #000000;
   width: 80%;
   text-align: center;
+  @media ${device.mobile} { 
+    width: 60%;
+  }
 `;
 
 export const StatusText = styled.p`
@@ -146,6 +159,12 @@ export const XPBar = styled.div`
   overflow: hidden;
   border: 2px solid #000000;
   margin: 10px 16px;
+  width: 95%;
+  @media ${device.mobile} { 
+    align-self: center;
+    width: 85%;
+    margin: 8px;
+  }
 `;
 
 export const XPProgress = styled.div`
@@ -158,10 +177,22 @@ export const XPProgress = styled.div`
 export const XPText = styled.div`
   font-size: 12px;
   margin: 4px 16px;
-
 `
+export const XPContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+`;
 
-export const Button = styled.button`
+
+export const Button = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  text-decoration: none;
+  margin: unset;
   background-color: #FDC342;
   color: black;
   font-weight: bold;
@@ -202,6 +233,11 @@ export const RankingContainer = styled.div`
     font-weight: bold;
     margin-left: 16px;
     justify-content: center;
+
+    @media ${device.mobile} { 
+        width: 20%;
+    }
+
 `
 export const ButtonsContainer = styled.div`
     display: flex; 
