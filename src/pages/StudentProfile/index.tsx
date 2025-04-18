@@ -1,5 +1,6 @@
 import {
     Button,
+    ButtonsContainer,
     Card,
     Container,
     Level,
@@ -62,12 +63,12 @@ const AreaAluno = () => {
                     </XPBar>
                     <XPText>120/300 XP (40%)</XPText>
                 </Card>
-
-                <Button>Missão do dia</Button>
-                <Button>Quizes Disponíveis</Button>
-                <Button>Ranking dos Alunos</Button>
-                <Button>Perfil do Aluno</Button>
-                <Button>Lições</Button>
+                <ButtonsContainer>
+                    <Button>Missão do dia</Button>
+                    <Button>Quizes Disponíveis</Button>
+                    <Button>Ranking dos Alunos</Button>
+                    <Button>Lições</Button>
+                </ButtonsContainer>
             </ProfileBody>
 
         </Container>

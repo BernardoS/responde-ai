@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../utils/layoutBreakpoints";
 
 export const Container = styled.div`
   background-color: #91C8FF;
@@ -23,33 +24,58 @@ export const ProfileHeader = styled.div`
 
 export const ProfileBody = styled.div`
     display: flex;
-    padding: 16px;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 16px 64px;
+
+    @media ${device.desktop} {
+      padding: 16px;
+      flex-direction: column;
+    }
 `
 
 export const StudentInfo = styled.div`
-  display: flex;
-  flex-direction:row;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  h2{
-    font-size: 32px;
+   display: flex;
+   flex-direction:row;
+   width: 100%;
+   justify-content: space-between;
+
+   h2{
+    font-size: 48px;
     font-weight: bold;
-    margin:unset;
-  }
-  p{
-    text-align: center;
     margin: unset;
-  }
+   }
+
+
+    @media ${device.desktop} {
+      align-items: center;
+      flex-wrap: wrap;
+      margin:unset;
+      h2{
+        font-size: 32px;
+        font-weight: bold;
+        margin:unset;
+      }
+      p{
+        text-align: center;
+        margin: unset;
+      }
+    }
+  
 `
 
 export const Card = styled.div`
   background-color: #FDC342;
   border-radius: 12px;
-  margin: 16px 0;
   box-shadow: 4px 4px 0px #000;
   border: 2px solid #000000;
+  width: 50%;
+  
+  @media ${device.desktop} {
+    width: 100%;
+    margin: 16px 0;
+  }
 `;
 
 export const StudentStatus = styled.div`
@@ -143,16 +169,21 @@ export const Button = styled.button`
   font-weight: 800;
   width: 100%;
   padding: 12px;
-  margin-bottom: 12px;
   border: none;
   border-radius: 10px;
   box-shadow: 4px 4px 0px #000;
   cursor: pointer;
   border: 2px solid #000000;
   height: 64px;
+
   &:hover {
     background-color: #ffd966;
   }
+
+  @media ${device.desktop} {
+    width: 100%;
+  }
+
 `;
 
 export const RankingContainer = styled.div`
@@ -170,4 +201,15 @@ export const RankingContainer = styled.div`
     text-align: center;
     font-weight: bold;
     margin-left: 16px;
+    justify-content: center;
 `
+export const ButtonsContainer = styled.div`
+    display: flex; 
+    flex-direction: column;
+    width: 45%;
+    gap: 12px;
+    @media ${device.desktop} {
+        width: 100%;
+    }
+`
+    
