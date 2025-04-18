@@ -14,13 +14,14 @@ import {
     StudentInfo,
     StudentStatus,
     XPBar,
+    XPContainer,
     XPProgress,
     XPText
 } from "./style";
 import StudentMascot from "../../assets/student-mascot.png";
 
 
-const AreaAluno = () => {
+const StudentHome = () => {
     return (
         <Container>
             <ProfileHeader>
@@ -35,7 +36,7 @@ const AreaAluno = () => {
 
 
                 <Card>
-                    
+
                     <StudentStatus>
                         <MascotContainer>
                             <MascotImage src={StudentMascot} alt="Mascote do estudante" />
@@ -58,16 +59,20 @@ const AreaAluno = () => {
                             <span>2º Lugar</span>
                         </RankingContainer>
                     </StudentStatus>
-                    <XPBar>
-                        <XPProgress />
-                    </XPBar>
-                    <XPText>120/300 XP (40%)</XPText>
+                    <XPContainer>
+                        <XPBar>
+                            <XPProgress />
+                        </XPBar>
+                        <XPText>120/300 XP (40%)</XPText>
+                    </XPContainer>
+
                 </Card>
                 <ButtonsContainer>
-                    <Button>Missão do dia</Button>
-                    <Button>Quizes Disponíveis</Button>
-                    <Button>Ranking dos Alunos</Button>
-                    <Button>Lições</Button>
+                    <Button to="/aluno/quiz/5">Quiz do dia</Button>
+                    <Button to="/aluno/quizzes">Quizzes</Button>
+                    <Button to="/aluno/ranking">Ranking</Button>
+                    <Button to="/aluno/perfil">Perfil</Button>
+                    <Button to="/">Lições</Button>
                 </ButtonsContainer>
             </ProfileBody>
 
@@ -75,4 +80,4 @@ const AreaAluno = () => {
     );
 };
 
-export default AreaAluno;
+export default StudentHome;
