@@ -9,7 +9,7 @@ export const DefaultHeader = styled.div`
     padding: 16px;
     font-weight: bold;
     font-size: 18px;
-    border-bottom: 2px solid #000000;
+    border-bottom: 3px solid #000000;
     min-height: 64px;
     span{
         font-size: 24px;

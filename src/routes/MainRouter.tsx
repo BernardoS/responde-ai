@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "../pages/Home/index.tsx";
 import StudentHome from "../pages/StudentHome/index.tsx";
 import AvailableQuizzes from "../pages/AvailableQuizzes/index.tsx";
+import Quiz from "../pages/Quiz/index.tsx";
 
 
 function MainRouter() {
@@ -24,7 +25,7 @@ function MainRouter() {
         <Route path="/aluno/home" element={<StudentHome/>} />
         <Route path="/aluno/perfil" element={<h1>Perfil do aluno</h1>} />
         <Route path="/aluno/quizzes" element={<AvailableQuizzes/>} />
-        <Route path="/aluno/quiz/:id" element={<h1>Quiz</h1>} />
+        <Route path="/aluno/quiz/:id" element={<Quiz/>} />
         <Route path="/aluno/quiz/:id/resultado" element={<h1>Quiz Resultado</h1>} />
         <Route path="/aluno/ranking" element={<h1>Ranking</h1>} />
       </Routes>

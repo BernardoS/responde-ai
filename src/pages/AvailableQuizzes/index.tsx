@@ -8,6 +8,7 @@ import { QuizListContainer } from "./style";
 
 const quizzes:QuizItem[] = [
   {
+    _id: "68012147698525c5a586cc61",
     subject: "Matemática",
     title: "Números Primos",
     questions: 12,
@@ -15,6 +16,7 @@ const quizzes:QuizItem[] = [
     xp: 25
   },
   {
+    _id: "68012147698525c5a586cc61",
     subject: "Matemática",
     title: "Expressões numéricas",
     questions: 10,
@@ -22,6 +24,7 @@ const quizzes:QuizItem[] = [
     xp: 20
   },
   {
+    _id: "68012147698525c5a586cc61",
     subject: "Biologia",
     title: "Seres autotróficos",
     questions: 6,
@@ -29,20 +32,7 @@ const quizzes:QuizItem[] = [
     xp: 10
   },
   {
-    subject: "História",
-    title: "Descoberta do Brasil",
-    questions: 6,
-    expiresIn: "2 dias",
-    xp: 10
-  },
-  {
-    subject: "História",
-    title: "Descoberta do Brasil",
-    questions: 6,
-    expiresIn: "2 dias",
-    xp: 10
-  },
-  {
+    _id: "68012147698525c5a586cc61",
     subject: "História",
     title: "Descoberta do Brasil",
     questions: 6,
@@ -52,6 +42,7 @@ const quizzes:QuizItem[] = [
 ];
 
 type QuizItem = {
+  _id: string;
   subject: string;
   title: string;
   questions: number;

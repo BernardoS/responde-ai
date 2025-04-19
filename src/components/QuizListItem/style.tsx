@@ -1,12 +1,15 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const QuizCard = styled.div`
+export const QuizCard = styled(Link)`
   background-color: #fff2d9;
   border-radius: 16px;
   padding: 20px;
   margin-bottom: 20px;
   border: 3px solid black;
   box-shadow: 8px 8px 0 #000;
+  text-decoration: none;
+  color: black;
 `;
 
 export const Subject = styled.div`

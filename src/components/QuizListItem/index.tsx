@@ -5,6 +5,7 @@ import QuizDeadlineIcon from "../../assets/quiz-deadline.svg";
 
 interface QuizListItemProps {
     quiz: {
+        _id: string;
         subject: string;
         title: string;
         questions: number;
@@ -16,7 +17,7 @@ interface QuizListItemProps {
 
 function QuizListItem({ quiz, index }: QuizListItemProps) {
     return (
-        <QuizCard key={index}>
+        <QuizCard to={`/aluno/quiz/${quiz._id}`} key={index}>
             <Subject>{quiz.subject} <XP>{quiz.xp} xp</XP></Subject>
             <QuizTitle>{quiz.title}</QuizTitle>
             <InfoRow>
