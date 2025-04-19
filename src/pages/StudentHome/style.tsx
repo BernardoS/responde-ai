@@ -2,26 +2,6 @@ import styled from "styled-components";
 import { device } from "../../utils/layoutBreakpoints";
 import { Link } from "react-router-dom";
 
-export const Container = styled.div`
-  background-color: #91C8FF;
-  min-height: 100dvh;
-`;
-
-export const ProfileHeader = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff2d9;
-    padding: 16px;
-    font-weight: bold;
-    font-size: 18px;
-    border-bottom: 2px solid #000000;
-    min-height: 64px;
-    span{
-        font-size: 24px;
-        font-weight: bold;
-    }
-`;
 
 export const ProfileBody = styled.div`
     display: flex;
