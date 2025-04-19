@@ -7,6 +7,7 @@ export const DefaultBody = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 16px 64px;
+    box-sizing: border-box;
 
     @media ${device.desktop} {
       padding: 16px;
