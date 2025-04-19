@@ -9,7 +9,7 @@ import {
   SelectActions,
   SelectButton,
   SelectionSection
-} from "./styles";
+} from "./style";
 import Logo from "../../assets/logo.png";
 import TeacherMascot from "../../assets/teacher-mascot.png";
 import StudentMascot from "../../assets/student-mascot.png";

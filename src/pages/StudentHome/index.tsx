@@ -2,12 +2,10 @@ import {
     Button,
     ButtonsContainer,
     Card,
-    Container,
     Level,
     MascotContainer,
     MascotImage,
     ProfileBody,
-    ProfileHeader,
     RankingContainer,
     StatusContainer,
     StatusText,
@@ -19,15 +17,17 @@ import {
     XPText
 } from "./style";
 import StudentMascot from "../../assets/student-mascot.png";
+import { DefaultHeader, DefaultHeaderLink } from "../../components/DefaultHeader";
+import { DefaultContainer } from "../../components/DefaultContainer";
 
 
 const StudentHome = () => {
     return (
-        <Container>
-            <ProfileHeader>
+        <DefaultContainer>
+            <DefaultHeader>
                 <span>Olá, Aluno!</span>
-                <span>✖</span>
-            </ProfileHeader>
+                <DefaultHeaderLink to="/">✖</DefaultHeaderLink>
+            </DefaultHeader>
             <ProfileBody>
                 <StudentInfo>
                     <h2>Bernardo</h2>
@@ -76,7 +76,7 @@ const StudentHome = () => {
                 </ButtonsContainer>
             </ProfileBody>
 
-        </Container>
+        </DefaultContainer>
     );
 };
 
