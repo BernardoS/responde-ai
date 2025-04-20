@@ -1,43 +1,36 @@
-import {
-    Level,
-    ProfileBody,
-    StatusText,
-    XPBar,
-    XPContainer,
-    XPProgress,
-    XPText
-} from "./style";
-import StudentMascot from "../../assets/student-mascot.png";
-import { DefaultHeader, DefaultHeaderLink } from "../../components/DefaultHeader";
+import { DefaultBody } from "../../components/DefaultBody";
 import { DefaultContainer } from "../../components/DefaultContainer";
+import { DefaultHeader, DefaultHeaderLink } from "../../components/DefaultHeader";
 import { Button, ButtonsContainer, MascotContainer, MascotImage, StatusContainer, UserExtraInfo, UserInfo, UserProfileCard, UserStatus } from "../../components/UserComponents";
+import TeacherMascot from "../../assets/teacher-mascot.png";
+import { StatusText } from "../StudentHome/style";
+import { TeacherInfoBox } from "./style";
 
 
-const StudentHome = () => {
+function TeacherHome() {
     return (
         <DefaultContainer>
             <DefaultHeader>
-                <span>Olá, Aluno!</span>
+                <span>Olá, Professor!</span>
                 <DefaultHeaderLink to="/">✖</DefaultHeaderLink>
             </DefaultHeader>
-            <ProfileBody>
+            <DefaultBody>
                 <UserInfo>
-                    <h2>Bernardo</h2>
-                    <p>Turma:<br /> <strong>3ª série B</strong></p>
+                    <h2>Luiz</h2>
+                    <p>Matéria:<br /> <strong>Matemática</strong></p>
                 </UserInfo>
                 <UserProfileCard>
                     <UserStatus>
                         <MascotContainer>
-                            <MascotImage src={StudentMascot} alt="Mascote do estudante" />
-                            <Level>Nível 12</Level>
+                            <MascotImage src={TeacherMascot} alt="Mascote do professor" />
                         </MascotContainer>
                         <StatusContainer>
                             <StatusText>
-                                Respondeu
+                                Criou
                                 <br />
                                 <b className="awnsered" >10</b>
                             </StatusText>
-                            <StatusText>Faltam
+                            <StatusText>Concluiu
                                 <br />
                                 <b className="missing" >
                                     20
@@ -45,25 +38,25 @@ const StudentHome = () => {
                             </StatusText>
                         </StatusContainer>
                         <UserExtraInfo>
-                            <span>2º Lugar</span>
+                            <span>3 Turmas</span>
                         </UserExtraInfo>
                     </UserStatus>
-                    <XPContainer>
-                        <XPBar>
-                            <XPProgress />
-                        </XPBar>
-                        <XPText>120/300 XP (40%)</XPText>
-                    </XPContainer>
+                    <TeacherInfoBox>
+                        <span>
+                            <b>35</b> Alunos participaram do último quiz 
+                        </span>
+                    </TeacherInfoBox>
                 </UserProfileCard>
                 <ButtonsContainer>
-                    <Button to="/aluno/quizzes">Quizzes</Button>
-                    <Button to="/aluno/ranking">Ranking</Button>
-                    <Button to="/aluno/perfil">Perfil</Button>
+                    <Button to="/professor/criar-quiz">Criar Quiz</Button>
+                    <Button to="/professor/perfil">Perfil</Button>
+                    <Button to="/professor/alunos-turmas">Alunos e Turmas</Button>
                 </ButtonsContainer>
-            </ProfileBody>
+
+            </DefaultBody>
 
         </DefaultContainer>
     );
-};
+}
 
-export default StudentHome;
+export default TeacherHome;

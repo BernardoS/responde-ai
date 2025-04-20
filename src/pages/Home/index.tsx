@@ -28,7 +28,7 @@ function Home() {
               <h2>Selecione seu perfil</h2>
             </BoxWhite>
             <SelectActions>
-              <SelectButton to="/professor/perfil">
+              <SelectButton to="/professor/home">
                 <MascotContainer>
                   <img src={TeacherMascot} alt="Mascote do professor" />
                 </MascotContainer>

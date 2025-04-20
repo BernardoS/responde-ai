@@ -3,6 +3,7 @@ import Home from "../pages/Home/index.tsx";
 import StudentHome from "../pages/StudentHome/index.tsx";
 import AvailableQuizzes from "../pages/AvailableQuizzes/index.tsx";
 import Quiz from "../pages/Quiz/index.tsx";
+import TeacherHome from "../pages/TeacherHome/index.tsx";
 
 
 function MainRouter() {
@@ -13,7 +14,7 @@ function MainRouter() {
         <Route path="/" element={<Home />} />
         
         {/* Fluxo do professor */}
-        <Route path="/professor/home" element={<h1>Página do Professor</h1>} />
+        <Route path="/professor/home" element={<TeacherHome/>} />
         <Route path="/professor/perfil" element={<h1>Perfil Professor</h1>} />
         <Route path="/professor/dashboard" element={<h1>Tela do Professor</h1>} />
         <Route path="/professor/criar-quiz" element={<h1>Criar Quiz</h1>} />
