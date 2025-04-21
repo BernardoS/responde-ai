@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3000/api', // ajuste conforme sua URL base
+  baseURL: 'http://localhost:3002/api', // ajuste conforme sua URL base
 });
 
 // Buscar alunos de uma turma específica
-export const getAlunosPorTurma = async (turma: string) => {
+export const getStudentByClass = async (turma: string) => {
     try {
       const response = await api.get(`/usuarios/turmas/alunos`, {
         params: { turma }
@@ -18,7 +18,7 @@ export const getAlunosPorTurma = async (turma: string) => {
   };
   
   // Buscar todas as turmas com quantidade de alunos
-  export const getTurmasComQuantidade = async () => {
+  export const getClasses = async () => {
     try {
       const response = await api.get(`/usuarios/turmas/geral`);
       return response.data;
