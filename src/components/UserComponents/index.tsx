@@ -134,7 +134,7 @@ export const Button = styled(Link)`
   border: 3px solid #000000;
   height: 64px;
 
-  &:hover, &:focus {
+  &:hover, &:focus, &:active {
     background-color: #ffd966;
     animation: shake-vertical 0.5s ease-in-out forwards;        
   }
