@@ -20,8 +20,7 @@ function MainRouter() {
         <Route path="/professor/home" element={<TeacherHome/>} />
         <Route path="/professor/perfil" element={<TeacherProfile/>} />
         <Route path="/professor/criar-quiz" element={<CreateQuiz/>} />
-        <Route path="/professor/quizzes-disponiveis" element={<h1>Quizzes disponíveis</h1>} />
-        <Route path="/professor/turmas" element={<h1> turmas</h1>} />
+        <Route path="/professor/turmas" element={<h1>Turmas</h1>} />
         <Route path="/professor/alunos" element={<h1>Alunos</h1>} />
 
         {/* Fluxo do aluno */}
