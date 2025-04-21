@@ -4,6 +4,7 @@ import StudentHome from "../pages/StudentHome/index.tsx";
 import AvailableQuizzes from "../pages/AvailableQuizzes/index.tsx";
 import Quiz from "../pages/Quiz/index.tsx";
 import TeacherHome from "../pages/TeacherHome/index.tsx";
+import CreateQuiz from "../pages/CreateQuiz/index.tsx";
 
 
 function MainRouter() {
@@ -16,9 +17,7 @@ function MainRouter() {
         {/* Fluxo do professor */}
         <Route path="/professor/home" element={<TeacherHome/>} />
         <Route path="/professor/perfil" element={<h1>Perfil Professor</h1>} />
-        <Route path="/professor/dashboard" element={<h1>Tela do Professor</h1>} />
-        <Route path="/professor/criar-quiz" element={<h1>Criar Quiz</h1>} />
-        <Route path="/professor/quizzes-pendentes" element={<h1>Quizzes pendentes</h1>} />]
+        <Route path="/professor/criar-quiz" element={<CreateQuiz/>} />
         <Route path="/professor/quizzes-disponiveis" element={<h1>Quizzes disponíveis</h1>} />
         <Route path="/professor/alunos-turmas" element={<h1>Alunos e turmas</h1>} />
 

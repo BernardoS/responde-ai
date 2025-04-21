@@ -35,7 +35,7 @@ export const BoxBlue = styled.div`
     background-color: #91C8FF;
     border-radius: 8px;
     padding: 32px;
-    border: 2px solid #000000;
+    border: 3px solid #000000;
     width: 100%;
     box-sizing: border-box;
     box-shadow: 8px 8px 0px -2px rgba(26,26,26,1);
@@ -76,7 +76,7 @@ export const BoxWhite = styled.div`
     background-color: #FFF6E2;
     border-radius: 8px;
     padding: 16px;
-    border: 2px solid #000000;
+    border: 3px solid #000000;
     box-sizing: border-box;
     box-shadow: 8px 8px 0px -2px rgba(26,26,26,1);
     -webkit-box-shadow: 8px 8px 0px -2px rgba(26,26,26,1);
@@ -122,7 +122,7 @@ export const SelectButton = styled(Link)`
     flex-direction: column;
     background-color: #FFF6E2;
     border-radius: 8px;
-    border: 2px solid #000000;
+    border: 3px solid #000000;
     box-sizing: border-box;
     box-shadow: 8px 8px 0px -2px rgba(26,26,26,1);
     -webkit-box-shadow: 8px 8px 0px -2px rgba(26,26,26,1);
@@ -140,7 +140,7 @@ export const SelectButton = styled(Link)`
         text-align: center;
         margin: 16px;
     }
-    &:hover{
+    &:hover, &:focus{
         animation: shake-vertical 0.5s ease-in-out forwards;
     }
 
