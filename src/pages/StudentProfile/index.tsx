@@ -1,0 +1,10 @@
+function StudentProfile() {
+  return (
+    <div>
+      <h1>Student Profile</h1>
+      <p>This is the student profile page.</p>
+    </div>
+  );
+}
+
+export default StudentProfile;
