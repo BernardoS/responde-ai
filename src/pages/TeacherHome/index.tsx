@@ -49,8 +49,9 @@ function TeacherHome() {
                 </UserProfileCard>
                 <ButtonsContainer>
                     <Button to="/professor/criar-quiz">Criar Quiz</Button>
+                    <Button to="/professor/alunos">Alunos</Button>
+                    <Button to="/professor/turmas">Turmas</Button>
                     <Button to="/professor/perfil">Perfil</Button>
-                    <Button to="/professor/alunos-turmas">Alunos e Turmas</Button>
                 </ButtonsContainer>
 
             </DefaultBody>
