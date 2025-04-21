@@ -17,6 +17,7 @@ export const UserProfileCard = styled.div`
     width: 100%;
     margin: 16px 0;
     padding-bottom: unset;
+    box-sizing: border-box;
   }
 `;
 
