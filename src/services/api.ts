@@ -28,5 +28,14 @@ export const getStudentByClass = async (turma: string) => {
     }
   };
 
+export const getUserByEmail = async (email: string) => {
+    try {
+      const response = await api.get(`/usuarios/email/${email}`);
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar usuário:", error);
+    }
+}
+
 
 export default api;

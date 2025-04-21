@@ -11,14 +11,18 @@ import StudentMascot from "../../assets/student-mascot.png";
 import { DefaultHeader, DefaultHeaderLink } from "../../components/DefaultHeader";
 import { DefaultContainer } from "../../components/DefaultContainer";
 import { Button, ButtonsContainer, MascotContainer, MascotImage, StatusContainer, UserExtraInfo, UserInfo, UserProfileCard, UserStatus } from "../../components/UserComponents";
+import { useUser } from "../../contexts/UserContext";
 
 
 const StudentHome = () => {
+
+    const { limparDadosUsuario } = useUser();
+
     return (
         <DefaultContainer>
             <DefaultHeader>
                 <span>Olá, Aluno!</span>
-                <DefaultHeaderLink to="/">✖</DefaultHeaderLink>
+                <DefaultHeaderLink onClick={() => limparDadosUsuario()} to="/">✖</DefaultHeaderLink>
             </DefaultHeader>
             <ProfileBody>
                 <UserInfo>

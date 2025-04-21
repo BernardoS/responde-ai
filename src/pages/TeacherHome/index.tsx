@@ -5,19 +5,23 @@ import { Button, ButtonsContainer, MascotContainer, MascotImage, StatusContainer
 import TeacherMascot from "../../assets/teacher-mascot.png";
 import { StatusText } from "../StudentHome/style";
 import { TeacherInfoBox } from "./style";
+import { useUser } from "../../contexts/UserContext";
 
 
 function TeacherHome() {
+
+    const {usuario, limparDadosUsuario} = useUser();
+
     return (
         <DefaultContainer>
             <DefaultHeader>
                 <span>Olá, Professor!</span>
-                <DefaultHeaderLink to="/">✖</DefaultHeaderLink>
+                <DefaultHeaderLink onClick={() => limparDadosUsuario()} to="/">✖</DefaultHeaderLink>
             </DefaultHeader>
             <DefaultBody>
                 <UserInfo>
-                    <h2>Luiz</h2>
-                    <p>Matéria:<br /> <strong>Matemática</strong></p>
+                    <h2>{usuario?.nome.split(" ")[0]}</h2>
+                    <p>Matéria:<br /> <strong>{usuario?.materia}</strong></p>
                 </UserInfo>
                 <UserProfileCard>
                     <UserStatus>
