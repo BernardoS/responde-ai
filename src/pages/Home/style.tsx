@@ -38,9 +38,9 @@ export const BoxBlue = styled.div`
     border: 3px solid #000000;
     width: 100%;
     box-sizing: border-box;
-    box-shadow: 8px 8px 0px -2px rgba(26,26,26,1);
-    -webkit-box-shadow: 8px 8px 0px -2px rgba(26,26,26,1);
-    -moz-box-shadow: 8px 8px 0px -2px rgba(26,26,26,1);
+    box-shadow: 8px 8px 0px #000000;
+    -webkit-box-shadow: 8px 8px 0px #000000;
+    -moz-box-shadow: 8px 8px 0px #000000;
 
     @media ${device.mobile} {
         padding: 16px;
@@ -78,9 +78,9 @@ export const BoxWhite = styled.div`
     padding: 16px;
     border: 3px solid #000000;
     box-sizing: border-box;
-    box-shadow: 8px 8px 0px -2px rgba(26,26,26,1);
-    -webkit-box-shadow: 8px 8px 0px -2px rgba(26,26,26,1);
-    -moz-box-shadow: 8px 8px 0px -2px rgba(26,26,26,1);
+    box-shadow: 8px 8px 0px #000000;
+    -webkit-box-shadow: 8px 8px 0px #000000;
+    -moz-box-shadow: 8px 8px 0px #000000;
     h2{
         margin: unset;
         font-size: 24px;
@@ -124,9 +124,9 @@ export const SelectButton = styled(Link)`
     border-radius: 8px;
     border: 3px solid #000000;
     box-sizing: border-box;
-    box-shadow: 8px 8px 0px -2px rgba(26,26,26,1);
-    -webkit-box-shadow: 8px 8px 0px -2px rgba(26,26,26,1);
-    -moz-box-shadow: 8px 8px 0px -2px rgba(26,26,26,1);
+    box-shadow: 8px 8px 0px #000000;
+    -webkit-box-shadow: 8px 8px 0px #000000;
+    -moz-box-shadow: 8px 8px 0px #000000;
     text-decoration: none;
     hr{
         width: 100%;
