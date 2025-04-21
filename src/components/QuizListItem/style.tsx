@@ -10,6 +10,9 @@ export const QuizCard = styled(Link)`
   box-shadow: 8px 8px 0 #000;
   text-decoration: none;
   color: black;
+  &:hover, &:focus{
+    animation: shake-vertical 0.5s ease-in-out forwards;
+  }
 `;
 
 export const Subject = styled.div`

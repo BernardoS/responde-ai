@@ -73,7 +73,7 @@ export const QuizOptionButton = styled.button`
     font-size: 16px;
     font-weight: 800;
     cursor: pointer;
-    &:hover{
+    &:hover, &:focus{
         animation: shake-vertical 0.5s ease-in-out forwards;
     }
 `
