@@ -78,7 +78,7 @@ export const Button = styled.button`
         height: 24px;
         margin-left: 16px;
     }
-    &:hover, &:focus{
+    &:hover, &:focus, &:active {
         animation: shake-vertical 0.5s ease-in-out forwards;
     }
     @media ${device.tablet} {

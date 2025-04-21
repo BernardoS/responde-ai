@@ -5,7 +5,8 @@ import { DefaultTitle } from "../../components/DefaultTitle";
 import { useEffect, useState } from 'react';
 import { getClasses } from "../../services/api";
 import ClassListItem from "../../components/ClassListItem";
-import { ClassCardContainer } from "./style";
+import { AddStudentButton, ClassCardContainer } from "./style";
+import AddStudent from "../../assets/add-student.svg";
 
 interface StudentClass {
     turma: string;
@@ -33,14 +34,20 @@ function TeacherClasses() {
             </DefaultHeader>
             <DefaultBody>
                 <DefaultTitle>
-                    <h2>Minhas Turmas</h2>
+                    <h2>Turmas e Alunos</h2>
+                    <AddStudentButton>
+                        <img src={AddStudent} alt="Adicionar Aluno" />
+                        Adicionar Aluno
+                    </AddStudentButton>
                 </DefaultTitle>
+
+
                 <ClassCardContainer>
                     {classes && classes.map((classItem: StudentClass) => (
-                        <ClassListItem key={classItem.turma} quantidadeAlunos={classItem.quantidadeAlunos} turma={classItem.turma}/>
+                        <ClassListItem key={classItem.turma} quantidadeAlunos={classItem.quantidadeAlunos} turma={classItem.turma} />
                     ))}
                 </ClassCardContainer>
-                
+
             </DefaultBody>
         </DefaultContainer>
     );

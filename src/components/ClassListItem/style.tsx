@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../utils/layoutBreakpoints";
 
 export const ClassCard = styled.div`
   background-color: #fff2d9;
@@ -9,6 +10,10 @@ export const ClassCard = styled.div`
   box-shadow: 8px 8px 0 #000;
   text-decoration: none;
   color: black;
+  @media ${device.mobile} {
+      padding: 20px 16px;
+      margin:unset;
+    }
 `;
 
 export const ClassCardTitle = styled.h2`
@@ -38,7 +43,6 @@ export const ClassCardFooter = styled.div`
         font-weight: 600;
         width: 100%;
         padding: 12px;
-        border: none;
         border-radius: 10px;
         box-shadow: 8px 8px 0px #000;
         cursor: pointer;
@@ -49,7 +53,7 @@ export const ClassCardFooter = styled.div`
             margin-right: 8px;
         }
         
-        &:hover, &:focus {
+        &:hover, &:focus, &:active {
             background-color: #ffd966;
             animation: shake-vertical 0.5s ease-in-out forwards;        
         }
