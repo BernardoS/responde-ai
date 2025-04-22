@@ -8,6 +8,16 @@ const apiQuizzes = axios.create({
   baseURL: 'http://localhost:3003/api', // ajuste conforme sua URL base
 });
 
+type RankingItem = {
+  _id: string;
+  posicao: number,
+  nome: string,
+  xp: number,
+  nivel: number,
+  alunoId: string
+};
+
+
 // Buscar alunos de uma turma específica
 export const getStudentByClass = async (turma: string) => {
     try {
@@ -59,6 +69,22 @@ export const createStudent = async (nome:string, email:string, turma:string) =>{
 
 }
 
+export const getRankingPosition = async (alunoId:string) =>{
+  
+  try {
+    const response = await apiUsers.get(`/usuarios/ranking/geral/`);
+
+    const userList:RankingItem[] = response.data;
+
+    const filteredUserList = userList.filter(aluno => aluno.alunoId == alunoId);
+
+    return filteredUserList[0].posicao;
+  } catch (error) {
+    console.error("Erro ao buscar usuário:", error);
+  }
+
+}
+
 export const getAnsweredQuizzes = async (alunoId:string) =>{
   
   try {
@@ -80,3 +106,4 @@ export const getAvailableQuizzes = async (turma:string) =>{
   }
 
 }
+

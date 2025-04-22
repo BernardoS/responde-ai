@@ -68,7 +68,6 @@ export const XPBar = styled.div`
 
 export const XPProgress = styled.div`
   background-color: #00d084;
-  width: 40%;
   height: 100%;
   border-right: 2px solid #000000;
 `;
