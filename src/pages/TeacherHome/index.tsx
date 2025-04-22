@@ -4,7 +4,6 @@ import { DefaultHeader, DefaultHeaderLink } from "../../components/DefaultHeader
 import { Button, ButtonsContainer, MascotContainer, MascotImage, StatusContainer, UserExtraInfo, UserInfo, UserProfileCard, UserStatus } from "../../components/UserComponents";
 import TeacherMascot from "../../assets/teacher-mascot.png";
 import { StatusText } from "../StudentHome/style";
-import { TeacherInfoBox } from "./style";
 import { useUser } from "../../contexts/UserContext";
 import { useEffect, useState } from "react";
 import { getClasses } from "../../services/api";
@@ -43,12 +42,7 @@ function TeacherHome() {
                             <MascotImage src={TeacherMascot} alt="Mascote do professor" />
                         </MascotContainer>
                         <StatusContainer>
-                            <StatusText>
-                                Criou
-                                <br />
-                                <b className="awnsered" >10</b>
-                            </StatusText>
-                            <StatusText>Concluiu
+                            <StatusText>Quizzes Criados
                                 <br />
                                 <b className="missing" >
                                     20
@@ -59,11 +53,6 @@ function TeacherHome() {
                             <span>{qtdTurmas} Turmas</span>
                         </UserExtraInfo>
                     </UserStatus>
-                    <TeacherInfoBox>
-                        <span>
-                            <b>35</b> Alunos participaram do último quiz 
-                        </span>
-                    </TeacherInfoBox>
                 </UserProfileCard>
                 <ButtonsContainer>
                     <Button to="/professor/criar-quiz">Criar Quiz</Button>

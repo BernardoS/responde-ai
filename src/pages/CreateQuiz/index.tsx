@@ -5,9 +5,12 @@ import { DefaultHeader, DefaultHeaderLink } from "../../components/DefaultHeader
 import { DefaultTitle } from "../../components/DefaultTitle";
 import { Button, Form, FormContainer, Input, Label, LargeInputGroup, Select, SmallInputGroup, TextArea } from "./style";
 import GenerateQuiz from "../../assets/generate-quiz.svg"
+import { useNavigate } from "react-router-dom";
 
 
 function CreateQuiz() {
+
+    const navigate = useNavigate();
 
     const [form, setForm] = useState({
         subject: '',
@@ -25,6 +28,7 @@ function CreateQuiz() {
         e.preventDefault();
         console.log(form);
         // Enviar os dados do formulário
+        navigate("/professor/aprovar-quiz/5")
     };
 
     return (
