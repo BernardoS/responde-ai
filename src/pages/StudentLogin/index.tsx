@@ -43,6 +43,9 @@ function Studentlogin() {
 
     useEffect(()=>{
         if(usuario && usuario.tipo === 'aluno'){
+
+            localStorage.setItem('userEmail',usuario.email);
+
             navigate('/aluno/home');
         }
 

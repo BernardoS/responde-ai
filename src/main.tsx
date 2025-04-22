@@ -5,9 +5,7 @@ import './global.css'
 import { UserProvider } from './contexts/UserContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <UserProvider>
-      <MainRouter />
-    </UserProvider>
-  </StrictMode>,
+  <UserProvider>
+    <MainRouter />
+  </UserProvider>
 )

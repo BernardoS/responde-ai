@@ -1,13 +1,17 @@
 import axios from 'axios';
 
-const api = axios.create({
+const apiUsers = axios.create({
   baseURL: 'http://localhost:3002/api', // ajuste conforme sua URL base
+});
+
+const apiQuizzes = axios.create({
+  baseURL: 'http://localhost:3003/api', // ajuste conforme sua URL base
 });
 
 // Buscar alunos de uma turma específica
 export const getStudentByClass = async (turma: string) => {
     try {
-      const response = await api.get(`/usuarios/turmas/alunos`, {
+      const response = await apiUsers.get(`/usuarios/turmas/alunos`, {
         params: { turma }
       });
       return response.data;
@@ -20,7 +24,7 @@ export const getStudentByClass = async (turma: string) => {
   // Buscar todas as turmas com quantidade de alunos
   export const getClasses = async () => {
     try {
-      const response = await api.get(`/usuarios/turmas/geral`);
+      const response = await apiUsers.get(`/usuarios/turmas/geral`);
       return response.data;
     } catch (error) {
       console.error('Erro ao buscar turmas:', error);
@@ -30,7 +34,7 @@ export const getStudentByClass = async (turma: string) => {
 
 export const getUserByEmail = async (email: string) => {
     try {
-      const response = await api.get(`/usuarios/email/${email}`);
+      const response = await apiUsers.get(`/usuarios/email/${email}`);
       return response.data;
     } catch (error) {
       console.error("Erro ao buscar usuário:", error);
@@ -47,7 +51,7 @@ export const createStudent = async (nome:string, email:string, turma:string) =>{
   }
 
   try {
-    const response = await api.post('/usuarios', userData);
+    const response = await apiUsers.post('/usuarios', userData);
     return response.data;
   } catch (error) {
     console.error("Erro ao buscar usuário:", error);
@@ -55,5 +59,24 @@ export const createStudent = async (nome:string, email:string, turma:string) =>{
 
 }
 
+export const getAnsweredQuizzes = async (alunoId:string) =>{
+  
+  try {
+    const response = await apiQuizzes.get(`/quizzes/respondidos/${alunoId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar quizzes:", error);
+  }
 
-export default api;
+}
+
+export const getAvailableQuizzes = async (turma:string) =>{
+  
+  try {
+    const response = await apiQuizzes.get(`/quizzes/turma/${turma}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar usuário:", error);
+  }
+
+}

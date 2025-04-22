@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { getUserByEmail } from '../services/api';
 
 type Usuario = {
@@ -25,16 +25,26 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   const buscarUsuarioPorEmail = async (email: string) => {
     try {
-        const usuarioRegistrado = await getUserByEmail(email);
-        await setUsuario(usuarioRegistrado);
+      const usuarioRegistrado = await getUserByEmail(email);
+      await setUsuario(usuarioRegistrado);
     } catch (error) {
       console.error("Erro ao buscar usuário:", error);
     }
   };
 
   const limparDadosUsuario = () => {
-     setUsuario(null);
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('userId');
+    setUsuario(null);
   }
+
+  useEffect(() => {
+    const storedEmail = localStorage.getItem('userEmail');
+
+    if (storedEmail != null && storedEmail != "") {
+      buscarUsuarioPorEmail(storedEmail);
+    }
+  }, [])
 
   return (
     <UserContext.Provider value={{ usuario, buscarUsuarioPorEmail, limparDadosUsuario }}>

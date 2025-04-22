@@ -12,11 +12,47 @@ import { DefaultHeader, DefaultHeaderLink } from "../../components/DefaultHeader
 import { DefaultContainer } from "../../components/DefaultContainer";
 import { Button, ButtonsContainer, MascotContainer, MascotImage, StatusContainer, UserExtraInfo, UserInfo, UserProfileCard, UserStatus } from "../../components/UserComponents";
 import { useUser } from "../../contexts/UserContext";
+import { useEffect, useState } from "react";
+import { getAnsweredQuizzes, getAvailableQuizzes } from "../../services/api";
 
 
 const StudentHome = () => {
 
-    const { usuario,limparDadosUsuario } = useUser();
+    const { usuario, limparDadosUsuario } = useUser();
+    const [quizRespondidos, setQuizRespondidos] = useState(0);
+    const [quizDisponiveis, setQuizDisponiveis] = useState(0);
+
+    useEffect(() => {
+
+        const getQuizData = async () =>{
+            
+            if(usuario?._id){
+                getAnsweredQuizzes(usuario?._id)
+                .then((data)=>{
+                    if(data!= null && data != undefined){
+                        const countAnsweredQuizzes =  data.length;
+                        setQuizRespondidos(countAnsweredQuizzes);
+                    }
+                }).catch((error)=>{
+                    console.log("Houve um erro ao recuperar os quizzes respondidos");
+                    console.error(error);
+                });
+            }
+
+            if(usuario?.turma){
+                getAvailableQuizzes(usuario?.turma.toLowerCase())
+                .then((data)=>{
+                    const countAvailableQuizzes =  data.length;
+                    setQuizDisponiveis(countAvailableQuizzes);
+                }).catch((error)=>{
+                    console.log("Houve um erro ao recuperar os quizzes disponiveis");
+                    console.error(error);
+                });;   
+            }
+        }
+
+        getQuizData()
+    }, [usuario]);
 
     return (
         <DefaultContainer>
@@ -33,18 +69,20 @@ const StudentHome = () => {
                     <UserStatus>
                         <MascotContainer>
                             <MascotImage src={StudentMascot} alt="Mascote do estudante" />
-                            <Level>Nível 12</Level>
+                            <Level>Nível {usuario?.nivel}</Level>
                         </MascotContainer>
                         <StatusContainer>
                             <StatusText>
                                 Respondeu
                                 <br />
-                                <b className="awnsered" >10</b>
+                                <b className="awnsered" >
+                                    {quizRespondidos}
+                                </b>
                             </StatusText>
                             <StatusText>Faltam
                                 <br />
                                 <b className="missing" >
-                                    20
+                                    {quizDisponiveis}
                                 </b>
                             </StatusText>
                         </StatusContainer>

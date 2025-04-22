@@ -43,6 +43,10 @@ function Teacherlogin() {
 
     useEffect(()=>{
         if(usuario && usuario.tipo === 'professor'){
+
+            localStorage.setItem('userEmail',usuario.email);
+            localStorage.setItem('userId',usuario._id);
+            
             navigate('/professor/home');
         }
 
