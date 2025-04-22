@@ -11,6 +11,7 @@ import TeacherClasses from "../pages/TeacherClasses/index.tsx";
 import ClassDetail from "../pages/ClassDetail/index.tsx";
 import Teacherlogin from "../pages/TeacherLogin/index.tsx";
 import Studentlogin from "../pages/StudentLogin/index.tsx";
+import CreateStudent from "../pages/CreateStudent/index.tsx";
 
 
 function MainRouter() {
@@ -25,6 +26,7 @@ function MainRouter() {
         <Route path="/professor/home" element={<TeacherHome/>} />
         <Route path="/professor/perfil" element={<TeacherProfile/>} />
         <Route path="/professor/criar-quiz" element={<CreateQuiz/>} />
+        <Route path="/professor/criar-aluno" element={<CreateStudent/>} />
         <Route path="/professor/turmas" element={<TeacherClasses/>} />
         <Route path="/professor/turmas/:turma" element={<ClassDetail/>} />
 

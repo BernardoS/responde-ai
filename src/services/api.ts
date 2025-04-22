@@ -37,5 +37,23 @@ export const getUserByEmail = async (email: string) => {
     }
 }
 
+export const createStudent = async (nome:string, email:string, turma:string) =>{
+  
+  const userData = {
+    nome,
+    email,
+    turma,
+    tipo:"aluno"
+  }
+
+  try {
+    const response = await api.post('/usuarios', userData);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar usuário:", error);
+  }
+
+}
+
 
 export default api;
