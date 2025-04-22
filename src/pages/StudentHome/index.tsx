@@ -17,7 +17,8 @@ import { getAnsweredQuizzes, getAvailableQuizzes, getRankingPosition } from "../
 
 
 type QuizItem = {
-    _id: string;
+    quizId: string;
+    _id:string;
     materia: string;
     tema: string;
     quantidadePerguntas: number;
@@ -77,7 +78,7 @@ const StudentHome = () => {
         if (usuario?._id) {
             getAnsweredQuizzes(usuario?._id)
                 .then((data: QuizItem[]) => {
-                    const idsParaRemover = data.map(q => q._id);
+                    const idsParaRemover = data.map(q => q.quizId);
                     const quizzesDisponiveis = availableQuizList.filter(q => !idsParaRemover.includes(q._id));
                     const countquizzesDisponiveis = quizzesDisponiveis.length;
                     setQtdQuizDisponiveis(countquizzesDisponiveis);

@@ -91,7 +91,7 @@ export const getAnsweredQuizzes = async (alunoId:string) =>{
     const response = await apiQuizzes.get(`/quizzes/respondidos/${alunoId}`);
     return response.data;
   } catch (error) {
-    console.error("Erro ao buscar quizzes:", error);
+    console.error("Erro ao buscar quizzes respondidos:", error);
   }
 
 }
@@ -102,8 +102,53 @@ export const getAvailableQuizzes = async (turma:string) =>{
     const response = await apiQuizzes.get(`/quizzes/turma/${turma}`);
     return response.data;
   } catch (error) {
-    console.error("Erro ao buscar usuário:", error);
+    console.error("Erro ao buscar quizes disponíveis:", error);
   }
 
 }
 
+
+
+
+export const getQuiz = async (quizId:string) =>{
+  
+  try {
+    const response = await apiQuizzes.get(`/quizzes/${quizId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar quiz:", error);
+  }
+
+}
+
+interface RespostaPergunta {
+  perguntaId: string;
+  respostaEscolhida: string;
+}
+
+interface RespostaQuiz {
+  quizId: string,
+  alunoId: string
+}
+
+export const answwerQuiz = async (respostasPergunta:RespostaPergunta[],respostaQuiz:RespostaQuiz) =>{
+  
+  const data = {
+    alunoId: respostaQuiz.alunoId,
+    quizId: respostaQuiz.quizId,
+    respostas: respostasPergunta
+  }
+
+  console.log(data);
+  
+  try {
+    const response = await apiQuizzes.post('/quizzes/responder/',
+      data
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao buscar quiz:", error);
+  }
+
+}

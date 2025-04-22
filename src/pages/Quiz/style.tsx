@@ -103,6 +103,7 @@ export const QuizProgres = styled.div`
   background-color: #FDC342;
   height: 100%;
   border-right: 2px solid #000000;
+  transition: 0.2s;
 `;
 
 export const QuizProgressInfo = styled.div`
