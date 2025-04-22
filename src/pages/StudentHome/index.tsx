@@ -16,7 +16,7 @@ import { useUser } from "../../contexts/UserContext";
 
 const StudentHome = () => {
 
-    const { limparDadosUsuario } = useUser();
+    const { usuario,limparDadosUsuario } = useUser();
 
     return (
         <DefaultContainer>
@@ -26,8 +26,8 @@ const StudentHome = () => {
             </DefaultHeader>
             <ProfileBody>
                 <UserInfo>
-                    <h2>Bernardo</h2>
-                    <p>Turma:<br /> <strong>3ª série B</strong></p>
+                    <h2>{usuario?.nome.split(" ")[0]}</h2>
+                    <p>Turma:<br /> <strong>{usuario?.turma}</strong></p>
                 </UserInfo>
                 <UserProfileCard>
                     <UserStatus>
