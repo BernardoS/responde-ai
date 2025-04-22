@@ -6,7 +6,7 @@ import { DefaultTitle } from "../../components/DefaultTitle";
 import QuizListItem from "../../components/QuizListItem";
 import { QuizListContainer } from "./style";
 import { useUser } from "../../contexts/UserContext";
-import { getAvailableQuizzes } from "../../services/api";
+import { getAnsweredQuizzes, getAvailableQuizzes } from "../../services/api";
 
 type QuizItem = {
   _id: string;
@@ -22,21 +22,34 @@ function AvailableQuizzes() {
   const [quizList, setQuizList] = useState<QuizItem[]>();
 
   useEffect(() => {
-    const getQuizzes = async () => {
-      if (usuario?.turma) {
-        getAvailableQuizzes(usuario?.turma.toLowerCase())
-          .then((data) => {
-            console.log(data);
-            setQuizList(data);
-          }).catch((error) => {
-            console.log("Houve um erro ao recuperar os quizzes disponiveis");
-            console.error(error);
-          });;
-      }
-    }
-
     getQuizzes();
   }, [usuario?.turma]);
+
+  const getQuizzes = async () => {
+    if (usuario?.turma) {
+        getAvailableQuizzes(usuario?.turma.toLowerCase())
+        .then((data) => {
+          filterAnsweredQuizzes(data)
+        }).catch((error) => {
+          console.log("Houve um erro ao recuperar os quizzes disponiveis");
+          console.error(error);
+        });
+    }
+  }
+  const filterAnsweredQuizzes = (availableQuizList:QuizItem[]) =>{
+    if(usuario?._id){
+      getAnsweredQuizzes(usuario?._id)
+      .then((data:QuizItem[])=>{
+        const idsParaRemover = data.map(q => q._id);
+        const quizzesDisponiveis = availableQuizList.filter(q => !idsParaRemover.includes(q._id));
+        setQuizList(quizzesDisponiveis);
+      }).catch((error)=>{
+        console.log("Houve um erro ao recuperar os quizzes respondidos");
+        console.error(error);
+      })
+    }
+  }
+
 
   return (
     <DefaultContainer>

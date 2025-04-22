@@ -19,8 +19,8 @@ import { getAnsweredQuizzes, getAvailableQuizzes } from "../../services/api";
 const StudentHome = () => {
 
     const { usuario, limparDadosUsuario } = useUser();
-    const [quizRespondidos, setQuizRespondidos] = useState(0);
-    const [quizDisponiveis, setQuizDisponiveis] = useState(0);
+    const [qtdQuizRespondidos, setQtdQuizRespondidos] = useState(0);
+    const [qtdQuizDisponiveis, setQtdQuizDisponiveis] = useState(0);
 
     useEffect(() => {
 
@@ -31,7 +31,7 @@ const StudentHome = () => {
                 .then((data)=>{
                     if(data!= null && data != undefined){
                         const countAnsweredQuizzes =  data.length;
-                        setQuizRespondidos(countAnsweredQuizzes);
+                        setQtdQuizRespondidos(countAnsweredQuizzes);
                     }
                 }).catch((error)=>{
                     console.log("Houve um erro ao recuperar os quizzes respondidos");
@@ -42,8 +42,8 @@ const StudentHome = () => {
             if(usuario?.turma){
                 getAvailableQuizzes(usuario?.turma.toLowerCase())
                 .then((data)=>{
-                    const countAvailableQuizzes =  data.length;
-                    setQuizDisponiveis(countAvailableQuizzes);
+                    filterAnsweredQuizzes(data);
+                    
                 }).catch((error)=>{
                     console.log("Houve um erro ao recuperar os quizzes disponiveis");
                     console.error(error);
@@ -53,6 +53,22 @@ const StudentHome = () => {
 
         getQuizData()
     }, [usuario]);
+
+    const filterAnsweredQuizzes = (availableQuizList) =>{
+        if(usuario?._id){
+          getAnsweredQuizzes(usuario?._id)
+          .then((data)=>{
+            const idsParaRemover = data.map(q => q._id);
+            const quizzesDisponiveis = availableQuizList.filter(q => !idsParaRemover.includes(q._id));
+            const countquizzesDisponiveis =  quizzesDisponiveis.length;
+            setQtdQuizDisponiveis(countquizzesDisponiveis);
+          }).catch((error)=>{
+            console.log("Houve um erro ao recuperar os quizzes respondidos");
+            console.error(error);
+          })
+        }
+      }
+    
 
     return (
         <DefaultContainer>
@@ -76,13 +92,13 @@ const StudentHome = () => {
                                 Respondeu
                                 <br />
                                 <b className="awnsered" >
-                                    {quizRespondidos}
+                                    {qtdQuizRespondidos}
                                 </b>
                             </StatusText>
                             <StatusText>Faltam
                                 <br />
                                 <b className="missing" >
-                                    {quizDisponiveis}
+                                    {qtdQuizDisponiveis}
                                 </b>
                             </StatusText>
                         </StatusContainer>
