@@ -16,6 +16,14 @@ import { useEffect, useState } from "react";
 import { getAnsweredQuizzes, getAvailableQuizzes } from "../../services/api";
 
 
+type QuizItem = {
+    _id: string;
+    materia: string;
+    tema: string;
+    quantidadePerguntas: number;
+    dataFinal: Date;
+  };
+
 const StudentHome = () => {
 
     const { usuario, limparDadosUsuario } = useUser();
@@ -54,10 +62,10 @@ const StudentHome = () => {
         getQuizData()
     }, [usuario]);
 
-    const filterAnsweredQuizzes = (availableQuizList) =>{
+    const filterAnsweredQuizzes = (availableQuizList:QuizItem[]) =>{
         if(usuario?._id){
           getAnsweredQuizzes(usuario?._id)
-          .then((data)=>{
+          .then((data:QuizItem[])=>{
             const idsParaRemover = data.map(q => q._id);
             const quizzesDisponiveis = availableQuizList.filter(q => !idsParaRemover.includes(q._id));
             const countquizzesDisponiveis =  quizzesDisponiveis.length;
