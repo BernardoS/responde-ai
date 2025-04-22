@@ -54,7 +54,7 @@ function CreateStudent() {
         .then(() => {
             setLoading(false);
             alert("Usuário criado com sucesso !");
-            navigate("/professor/turma");
+            navigate("/professor/turmas");
         })
         .catch((error)=>{
             console.error(error);

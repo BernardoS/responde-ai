@@ -4,8 +4,12 @@ import { DefaultHeader, DefaultHeaderLink } from "../../components/DefaultHeader
 import { DefaultTitle } from "../../components/DefaultTitle";
 import { MascotContainer, ProfileContainer, ProfileData, ProfileDataContainer, ProfileInfoContainer } from "../../components/ProfileComponents";
 import TeacherMascot from "../../assets/teacher-mascot.png";
+import { useUser } from "../../contexts/UserContext";
 
 function TeacherProfile() {
+
+    const {usuario} = useUser();
+
     return (
         <DefaultContainer>
             <DefaultHeader>
@@ -19,12 +23,12 @@ function TeacherProfile() {
                 <ProfileContainer>
                     <MascotContainer>
                         <img src={TeacherMascot} alt="Imagem do mascote" />
-                        <h2>Prof. João Neto</h2>
+                        <h2>Prof. {usuario?.nome}</h2>
                     </MascotContainer>
                     <ProfileInfoContainer>
                         <h2>Informações do Professor</h2>
-                        <span><b>Disciplina:</b> Matemática</span>
-                        <span><b>Email:</b> joao.neto@gmail.com</span>
+                        <span><b>Disciplina:</b> {usuario?.materia}</span>
+                        <span><b>Email:</b> {usuario?.email}</span>
                     </ProfileInfoContainer>
                     <ProfileDataContainer>
                         <h2>Dados do profeessor</h2>

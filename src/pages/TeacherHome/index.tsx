@@ -6,11 +6,25 @@ import TeacherMascot from "../../assets/teacher-mascot.png";
 import { StatusText } from "../StudentHome/style";
 import { TeacherInfoBox } from "./style";
 import { useUser } from "../../contexts/UserContext";
+import { useEffect, useState } from "react";
+import { getClasses } from "../../services/api";
 
 
 function TeacherHome() {
 
     const {usuario, limparDadosUsuario} = useUser();
+    const [qtdTurmas, setQtdTurmas] = useState(0);
+
+    useEffect(()=>{
+       const getQtdTurmas = async() =>{
+            getClasses()
+            .then((data)=>{
+                setQtdTurmas(data.length);
+            });
+       }
+        
+       getQtdTurmas();
+    },[])
 
     return (
         <DefaultContainer>
@@ -42,7 +56,7 @@ function TeacherHome() {
                             </StatusText>
                         </StatusContainer>
                         <UserExtraInfo>
-                            <span>3 Turmas</span>
+                            <span>{qtdTurmas} Turmas</span>
                         </UserExtraInfo>
                     </UserStatus>
                     <TeacherInfoBox>
