@@ -5,58 +5,52 @@ import { DefaultHeader, DefaultHeaderLink } from "../../components/DefaultHeader
 import { DefaultTitle } from "../../components/DefaultTitle";
 import QuizListItem from "../../components/QuizListItem";
 import { QuizListContainer } from "./style";
-
-const quizzes:QuizItem[] = [
-  {
-    _id: "68012147698525c5a586cc61",
-    subject: "Matemática",
-    title: "Números Primos",
-    questions: 12,
-    expiresIn: "12 dias",
-    xp: 25
-  },
-  {
-    _id: "68012147698525c5a586cc61",
-    subject: "Matemática",
-    title: "Expressões numéricas",
-    questions: 10,
-    expiresIn: "10 dias",
-    xp: 20
-  },
-  {
-    _id: "68012147698525c5a586cc61",
-    subject: "Biologia",
-    title: "Seres autotróficos",
-    questions: 6,
-    expiresIn: "5 dias",
-    xp: 10
-  },
-  {
-    _id: "68012147698525c5a586cc61",
-    subject: "História",
-    title: "Descoberta do Brasil",
-    questions: 6,
-    expiresIn: "2 dias",
-    xp: 10
-  }
-];
+import { useUser } from "../../contexts/UserContext";
+import { getAnsweredQuizzes, getAvailableQuizzes } from "../../services/api";
 
 type QuizItem = {
-  _id: string;
-  subject: string;
-  title: string;
-  questions: number;
-  expiresIn: string;
-  xp: number;
+  quizId: string;
+  _id:string;
+  materia: string;
+  tema: string;
+  quantidadePerguntas: number;
+  dataFinal: Date;
 };
 
 function AvailableQuizzes() {
 
+  const { usuario } = useUser();
   const [quizList, setQuizList] = useState<QuizItem[]>();
 
   useEffect(() => {
-    setQuizList(quizzes);
-  }, []);
+    getQuizzes();
+  }, [usuario?.turma]);
+
+  const getQuizzes = async () => {
+    if (usuario?.turma) {
+        getAvailableQuizzes(usuario?.turma.toLowerCase())
+        .then((data) => {
+          filterAnsweredQuizzes(data)
+        }).catch((error) => {
+          console.log("Houve um erro ao recuperar os quizzes disponiveis");
+          console.error(error);
+        });
+    }
+  }
+  const filterAnsweredQuizzes = (availableQuizList:QuizItem[]) =>{
+    if(usuario?._id){
+      getAnsweredQuizzes(usuario?._id)
+      .then((data:QuizItem[])=>{
+        const idsParaRemover = data.map(q => q.quizId);
+        const quizzesDisponiveis = availableQuizList.filter(q => !idsParaRemover.includes(q._id));
+        setQuizList(quizzesDisponiveis);
+      }).catch((error)=>{
+        console.log("Houve um erro ao recuperar os quizzes respondidos");
+        console.error(error);
+      })
+    }
+  }
+
 
   return (
     <DefaultContainer>

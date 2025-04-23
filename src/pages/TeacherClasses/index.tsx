@@ -7,6 +7,7 @@ import { getClasses } from "../../services/api";
 import ClassListItem from "../../components/ClassListItem";
 import { AddStudentButton, ClassCardContainer } from "./style";
 import AddStudent from "../../assets/add-student.svg";
+import { useNavigate } from "react-router-dom";
 
 interface StudentClass {
     turma: string;
@@ -16,6 +17,8 @@ interface StudentClass {
 function TeacherClasses() {
 
     const [classes, setClasses] = useState<StudentClass[]>();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -35,7 +38,7 @@ function TeacherClasses() {
             <DefaultBody>
                 <DefaultTitle>
                     <h2>Turmas e Alunos</h2>
-                    <AddStudentButton>
+                    <AddStudentButton onClick={() => navigate("/professor/criar-aluno")}>
                         <img src={AddStudent} alt="Adicionar Aluno" />
                         Adicionar Aluno
                     </AddStudentButton>

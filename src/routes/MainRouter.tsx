@@ -9,6 +9,10 @@ import TeacherProfile from "../pages/TeacherProfile/index.tsx";
 import StudentProfile from "../pages/StudentProfile/index.tsx";
 import TeacherClasses from "../pages/TeacherClasses/index.tsx";
 import ClassDetail from "../pages/ClassDetail/index.tsx";
+import Teacherlogin from "../pages/TeacherLogin/index.tsx";
+import Studentlogin from "../pages/StudentLogin/index.tsx";
+import CreateStudent from "../pages/CreateStudent/index.tsx";
+import AproveQuiz from "../pages/AproveQuiz/index.tsx";
 
 
 function MainRouter() {
@@ -19,13 +23,17 @@ function MainRouter() {
         <Route path="/" element={<Home />} />
         
         {/* Fluxo do professor */}
+        <Route path="/professor/login" element={<Teacherlogin/>} />
         <Route path="/professor/home" element={<TeacherHome/>} />
         <Route path="/professor/perfil" element={<TeacherProfile/>} />
         <Route path="/professor/criar-quiz" element={<CreateQuiz/>} />
+        <Route path="/professor/aprovar-quiz/:draftId" element={<AproveQuiz/>} />
+        <Route path="/professor/criar-aluno" element={<CreateStudent/>} />
         <Route path="/professor/turmas" element={<TeacherClasses/>} />
         <Route path="/professor/turmas/:turma" element={<ClassDetail/>} />
 
         {/* Fluxo do aluno */}
+        <Route path="/aluno/login" element={<Studentlogin/>} />
         <Route path="/aluno/home" element={<StudentHome/>} />
         <Route path="/aluno/perfil" element={<StudentProfile/>} />
         <Route path="/aluno/quizzes" element={<AvailableQuizzes/>} />

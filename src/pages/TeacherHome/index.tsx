@@ -4,20 +4,61 @@ import { DefaultHeader, DefaultHeaderLink } from "../../components/DefaultHeader
 import { Button, ButtonsContainer, MascotContainer, MascotImage, StatusContainer, UserExtraInfo, UserInfo, UserProfileCard, UserStatus } from "../../components/UserComponents";
 import TeacherMascot from "../../assets/teacher-mascot.png";
 import { StatusText } from "../StudentHome/style";
-import { TeacherInfoBox } from "./style";
+import { useUser } from "../../contexts/UserContext";
+import { useEffect, useState } from "react";
+import { getClasses, getTeacherQuizzes } from "../../services/api";
+
+type QuizItem = {
+    quizId: string;
+    _id:string;
+    materia: string;
+    tema: string;
+    quantidadePerguntas: number;
+    dataFinal: Date;
+};
 
 
 function TeacherHome() {
+
+    const { usuario, limparDadosUsuario } = useUser();
+    const [qtdTurmas, setQtdTurmas] = useState(0);
+    const [qtdQuizzes, setQtdQuizzes] = useState(0);
+
+    useEffect(() => {
+        const getQtdTurmas = async () => {
+            getClasses()
+                .then((data) => {
+                    setQtdTurmas(data.length);
+                });
+        }
+
+        const getQtdQuizzes = async () => {
+            if (usuario?._id) {
+                getTeacherQuizzes(usuario?._id)
+                .then((data:QuizItem[]) => {
+                    console.log(data);
+                    const countQtdQuizzes = data.length;
+                    setQtdQuizzes(countQtdQuizzes);
+                }).catch((error)=>{
+                    console.error(error);
+                })
+            }
+        }
+
+        getQtdTurmas();
+        getQtdQuizzes();
+    }, [])
+
     return (
         <DefaultContainer>
             <DefaultHeader>
                 <span>Olá, Professor!</span>
-                <DefaultHeaderLink to="/">✖</DefaultHeaderLink>
+                <DefaultHeaderLink onClick={() => limparDadosUsuario()} to="/">✖</DefaultHeaderLink>
             </DefaultHeader>
             <DefaultBody>
                 <UserInfo>
-                    <h2>Luiz</h2>
-                    <p>Matéria:<br /> <strong>Matemática</strong></p>
+                    <h2>{usuario?.nome.split(" ")[0]}</h2>
+                    <p>Matéria:<br /> <strong>{usuario?.materia}</strong></p>
                 </UserInfo>
                 <UserProfileCard>
                     <UserStatus>
@@ -25,27 +66,17 @@ function TeacherHome() {
                             <MascotImage src={TeacherMascot} alt="Mascote do professor" />
                         </MascotContainer>
                         <StatusContainer>
-                            <StatusText>
-                                Criou
-                                <br />
-                                <b className="awnsered" >10</b>
-                            </StatusText>
-                            <StatusText>Concluiu
+                            <StatusText>Quizzes Criados
                                 <br />
                                 <b className="missing" >
-                                    20
+                                    {qtdQuizzes}
                                 </b>
                             </StatusText>
                         </StatusContainer>
                         <UserExtraInfo>
-                            <span>3 Turmas</span>
+                            <span>{qtdTurmas} Turmas</span>
                         </UserExtraInfo>
                     </UserStatus>
-                    <TeacherInfoBox>
-                        <span>
-                            <b>35</b> Alunos participaram do último quiz 
-                        </span>
-                    </TeacherInfoBox>
                 </UserProfileCard>
                 <ButtonsContainer>
                     <Button to="/professor/criar-quiz">Criar Quiz</Button>
