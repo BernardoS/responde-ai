@@ -9,7 +9,8 @@ import { useUser } from "../../contexts/UserContext";
 import { getAnsweredQuizzes, getAvailableQuizzes } from "../../services/api";
 
 type QuizItem = {
-  _id: string;
+  quizId: string;
+  _id:string;
   materia: string;
   tema: string;
   quantidadePerguntas: number;
@@ -40,7 +41,7 @@ function AvailableQuizzes() {
     if(usuario?._id){
       getAnsweredQuizzes(usuario?._id)
       .then((data:QuizItem[])=>{
-        const idsParaRemover = data.map(q => q._id);
+        const idsParaRemover = data.map(q => q.quizId);
         const quizzesDisponiveis = availableQuizList.filter(q => !idsParaRemover.includes(q._id));
         setQuizList(quizzesDisponiveis);
       }).catch((error)=>{

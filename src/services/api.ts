@@ -176,3 +176,65 @@ export const generateQuiz = async (data:CriarQuizRequest) =>{
   }
 
 }
+
+export const getDraft = async (draftId:string) =>{
+
+  console.log(draftId);  
+
+  try {
+    const response = await apiQuizzes.get(`/rascunhos/${draftId}/perguntas/pendentes`);
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao gerar quiz:", error);
+  }
+
+}
+
+export const reviewDraft = async (draftId:string,perguntaId:string,aprovada:boolean) =>{
+
+  const data = {
+    perguntaId,
+    aprovada
+  } 
+
+  try {
+
+    const response = await apiQuizzes.patch(`/rascunhos/${draftId}/perguntas/avaliar`,
+      data
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao gerar quiz:", error);
+  }
+
+}
+
+export const approveDraft = async (draftId:string) =>{
+
+  try {
+    
+    const response = await apiQuizzes.patch(`/rascunhos/${draftId}/finalizar/`);
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao aprovar quiz:", error);
+  }
+
+}
+
+export const regenerateQuestions = async (draftId:string) =>{
+
+  try {
+    
+    const response = await apiQuizzes.post(`/rascunhos/${draftId}/perguntas/regerar`);
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao aprovar quiz:", error);
+  }
+
+}
+
+

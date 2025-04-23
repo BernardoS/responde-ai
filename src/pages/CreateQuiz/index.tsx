@@ -118,15 +118,15 @@ function CreateQuiz() {
                                 <Label>Selecione a turma</Label>
                                 <Select name="class" value={form.class} onChange={handleChange}>
                                     <option value="">Selecione</option>
-                                    <option value="1º Ano">1º Ano</option>
-                                    <option value="2º Ano">2º Ano</option>
-                                    <option value="3º Ano">3º Ano</option>
-                                    <option value="4º Ano">4º Ano</option>
-                                    <option value="5º Ano">5º Ano</option>
-                                    <option value="6º Ano">6º Ano</option>
-                                    <option value="7º Ano">7º Ano</option>
-                                    <option value="8º Ano">8º Ano</option>
-                                    <option value="9º Ano">9º Ano</option>
+                                    <option value="1º ano">1º Ano</option>
+                                    <option value="2º ano">2º Ano</option>
+                                    <option value="3º ano">3º Ano</option>
+                                    <option value="4º ano">4º Ano</option>
+                                    <option value="5º ano">5º Ano</option>
+                                    <option value="6º ano">6º Ano</option>
+                                    <option value="7º ano">7º Ano</option>
+                                    <option value="8º ano">8º Ano</option>
+                                    <option value="9º ano">9º Ano</option>
                                 </Select>
                             </div>
 
