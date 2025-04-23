@@ -141,7 +141,6 @@ const StudentHome = () => {
                 </UserProfileCard>
                 <ButtonsContainer>
                     <Button to="/aluno/quizzes">Quizzes</Button>
-                    <Button to="/aluno/ranking">Ranking</Button>
                     <Button to="/aluno/perfil">Perfil</Button>
                 </ButtonsContainer>
             </ProfileBody>

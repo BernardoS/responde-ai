@@ -107,9 +107,6 @@ export const getAvailableQuizzes = async (turma:string) =>{
 
 }
 
-
-
-
 export const getQuiz = async (quizId:string) =>{
   
   try {
@@ -149,6 +146,19 @@ export const answwerQuiz = async (respostasPergunta:RespostaPergunta[],respostaQ
     return response.data;
   } catch (error) {
     console.error("Erro ao buscar quiz:", error);
+  }
+
+}
+
+export const getTeacherQuizzes = async (teacherId:string) =>{
+
+  try {
+    
+    const response = await apiQuizzes.get(`/quizzes/professor/${teacherId}`);
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao aprovar quiz:", error);
   }
 
 }
@@ -236,5 +246,7 @@ export const regenerateQuestions = async (draftId:string) =>{
   }
 
 }
+
+
 
 

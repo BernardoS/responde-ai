@@ -7,6 +7,7 @@ import { ApproveButton, QuizAproveContainer } from "./style";
 import { QuizAproveListItem } from "../../components/QuizAproveListItem";
 import { useEffect, useState } from "react";
 import { approveDraft, getDraft, regenerateQuestions, reviewDraft } from "../../services/api";
+import { OrbitProgress } from "react-loading-indicators";
 
 export interface PerguntaPendente {
     perguntaId: string;
@@ -24,6 +25,7 @@ function AproveQuiz() {
     const { draftId } = useParams();
     const navigate = useNavigate()
     const [draftData, setDraftData] = useState<PendentesDraftResponse>();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         getDraftData();
@@ -43,21 +45,23 @@ function AproveQuiz() {
 
     const tryApproveDraft = () => {
         if (draftId) {
+            setLoading(true);
             approveDraft(draftId)
                 .then((data) => {
+                    setLoading(false);
                     console.log(data);
                     if (data.message.includes("Faltam")) {
-                        alert("Serão geradas novas perguntas para completar o quiz!");
+                        console.log("Serão geradas novas perguntas para completar o quiz!");
                         genereateNewQuestions();
                     } else {
                         navigate("/professor/home");
                     }
 
                 }).catch((error) => {
+                    setLoading(false);
                     console.error(error);
                 })
         }
-        alert("Clicou em aprovar");
     }
 
     const genereateNewQuestions = () => {
@@ -65,7 +69,7 @@ function AproveQuiz() {
             regenerateQuestions(draftId)
                 .then((data) => {
                     console.log(data);
-                    alert("Novas perguntas geradas com sucesso!");
+                    console.log("Novas perguntas geradas com sucesso!");
                     getDraftData();
                 }).catch((error) => {
                     console.error(error);
@@ -78,7 +82,7 @@ function AproveQuiz() {
             reviewDraft(draftId, questionId, true)
                 .then((data) => {
                     console.log(data);
-                    alert("Pergunta aprovada com sucesso!");
+                    console.log("Pergunta aprovada com sucesso!");
                     getDraftData();
                 }).catch((error) => {
                     console.error(error);
@@ -91,7 +95,7 @@ function AproveQuiz() {
             reviewDraft(draftId, questionId, false)
                 .then((data) => {
                     console.log(data);
-                    alert("Pergunta reprovada com sucesso!");
+                    console.log("Pergunta reprovada com sucesso!");
                     getDraftData();
                 }).catch((error) => {
                     console.error(error);
@@ -108,9 +112,15 @@ function AproveQuiz() {
             <DefaultBody>
                 <DefaultTitle>
                     <h2>Avalie abaixo as questões geradas pela IA</h2>
-                    <ApproveButton onClick={() => tryApproveDraft()}>
-                        Aprovar quiz
-                    </ApproveButton>
+                    {loading ? (
+                        <ApproveButton onClick={() => alert("Aguarde o carregamento!")}>
+                            <OrbitProgress color="#000" size="small" style={{fontSize:10}} />
+                        </ApproveButton>
+                    ) : (
+                        <ApproveButton onClick={() => tryApproveDraft()}>
+                            Aprovar quiz
+                        </ApproveButton>)}
+
                 </DefaultTitle>
                 <QuizAproveContainer>
                     {(draftData != undefined && draftData?.pendentes.length > 0) &&

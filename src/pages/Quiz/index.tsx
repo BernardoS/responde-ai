@@ -129,8 +129,6 @@ function Quiz() {
                 console.log("Houve um problema ao registrar a resposta");
                 console.error(error);
             })
-        }else{
-            alert("Houve um problema ao registrar a resposta do quiz, tente novamente mais tarde");
         }
     }
 

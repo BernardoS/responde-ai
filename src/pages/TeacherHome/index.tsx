@@ -6,24 +6,48 @@ import TeacherMascot from "../../assets/teacher-mascot.png";
 import { StatusText } from "../StudentHome/style";
 import { useUser } from "../../contexts/UserContext";
 import { useEffect, useState } from "react";
-import { getClasses } from "../../services/api";
+import { getClasses, getTeacherQuizzes } from "../../services/api";
+
+type QuizItem = {
+    quizId: string;
+    _id:string;
+    materia: string;
+    tema: string;
+    quantidadePerguntas: number;
+    dataFinal: Date;
+};
 
 
 function TeacherHome() {
 
-    const {usuario, limparDadosUsuario} = useUser();
+    const { usuario, limparDadosUsuario } = useUser();
     const [qtdTurmas, setQtdTurmas] = useState(0);
+    const [qtdQuizzes, setQtdQuizzes] = useState(0);
 
-    useEffect(()=>{
-       const getQtdTurmas = async() =>{
+    useEffect(() => {
+        const getQtdTurmas = async () => {
             getClasses()
-            .then((data)=>{
-                setQtdTurmas(data.length);
-            });
-       }
-        
-       getQtdTurmas();
-    },[])
+                .then((data) => {
+                    setQtdTurmas(data.length);
+                });
+        }
+
+        const getQtdQuizzes = async () => {
+            if (usuario?._id) {
+                getTeacherQuizzes(usuario?._id)
+                .then((data:QuizItem[]) => {
+                    console.log(data);
+                    const countQtdQuizzes = data.length;
+                    setQtdQuizzes(countQtdQuizzes);
+                }).catch((error)=>{
+                    console.error(error);
+                })
+            }
+        }
+
+        getQtdTurmas();
+        getQtdQuizzes();
+    }, [])
 
     return (
         <DefaultContainer>
@@ -45,7 +69,7 @@ function TeacherHome() {
                             <StatusText>Quizzes Criados
                                 <br />
                                 <b className="missing" >
-                                    20
+                                    {qtdQuizzes}
                                 </b>
                             </StatusText>
                         </StatusContainer>

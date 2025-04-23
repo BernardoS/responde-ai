@@ -17,6 +17,10 @@ interface CriarQuizRequest {
     quantidade: number;
   }
 
+interface GenerateQuizReturn{
+    draftId:string;
+}
+
 function CreateQuiz() {
 
     const navigate = useNavigate();
@@ -57,11 +61,7 @@ function CreateQuiz() {
             return;
         }
 
-        console.log(form);
-        // Enviar os dados do formulário
-        navigate("/professor/aprovar-quiz/5")
-
-        gerarQuiz()
+        gerarQuiz();
     };
 
     function gerarQuiz(){
@@ -75,8 +75,9 @@ function CreateQuiz() {
         }
 
         generateQuiz(quizData)
-        .then((data) => {
+        .then((data:GenerateQuizReturn) => {
             console.log(data);
+            navigate(`/professor/aprovar-quiz/${data.draftId}`);
         }).catch((error)=>{
             console.log("Erro ao gerar quiz");
             console.error(error);
