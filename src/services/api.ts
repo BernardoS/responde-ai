@@ -152,3 +152,27 @@ export const answwerQuiz = async (respostasPergunta:RespostaPergunta[],respostaQ
   }
 
 }
+
+interface CriarQuizRequest {
+  professorId: string;
+  turma: string;
+  materia: string;
+  tema: string;
+  quantidade: number;
+}
+
+export const generateQuiz = async (data:CriarQuizRequest) =>{
+
+  console.log(data);  
+
+  try {
+    const response = await apiQuizzes.post('/rascunhos/draft/',
+      data
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Erro ao gerar quiz:", error);
+  }
+
+}

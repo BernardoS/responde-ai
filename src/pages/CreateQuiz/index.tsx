@@ -6,11 +6,21 @@ import { DefaultTitle } from "../../components/DefaultTitle";
 import { Button, Form, FormContainer, Input, Label, LargeInputGroup, Select, SmallInputGroup, TextArea } from "./style";
 import GenerateQuiz from "../../assets/generate-quiz.svg"
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../contexts/UserContext";
+import { generateQuiz } from "../../services/api";
 
+interface CriarQuizRequest {
+    professorId: string;
+    turma: string;
+    materia: string;
+    tema: string;
+    quantidade: number;
+  }
 
 function CreateQuiz() {
 
     const navigate = useNavigate();
+    const {usuario} = useUser();
 
     const [form, setForm] = useState({
         subject: '',
@@ -26,10 +36,55 @@ function CreateQuiz() {
 
     const handleSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
+
+        if(form.questionsCount == null && form.questionsCount == undefined && form.questionsCount < 0 && form.questionsCount == ""){
+            alert("Preencha corretamente a quantidade de questões");
+            return;
+        }
+
+        if(form.topic == null && form.topic == undefined  && form.topic == ""){
+            alert("Preencha corretamente o tema do quiz");
+            return;
+        }
+
+        if(form.class == null && form.class == undefined  && form.class == ""){
+            alert("Preencha corretamente a turma do quiz");
+            return;
+        }
+
+        if(form.subject == null && form.subject == undefined  && form.subject == ""){
+            alert("Preencha corretamente a matéria do quiz");
+            return;
+        }
+
         console.log(form);
         // Enviar os dados do formulário
         navigate("/professor/aprovar-quiz/5")
+
+        gerarQuiz()
     };
+
+    function gerarQuiz(){
+        
+        const quizData:CriarQuizRequest = {
+            professorId: (usuario?._id)? usuario._id : "",
+            turma: form.class,
+            materia: form.subject,
+            tema: form.topic,
+            quantidade: parseInt(form.questionsCount)
+        }
+
+        generateQuiz(quizData)
+        .then((data) => {
+            console.log(data);
+        }).catch((error)=>{
+            console.log("Erro ao gerar quiz");
+            console.error(error);
+        })
+
+
+    }
+    
 
     return (
         <DefaultContainer>
@@ -98,7 +153,7 @@ function CreateQuiz() {
                             />
                         </LargeInputGroup>
 
-                        <Button type="submit">Criar Quiz <img src={GenerateQuiz} alt="ícone de gerar quiz" /></Button>
+                        <Button type="submit">Gerar Quiz <img src={GenerateQuiz} alt="ícone de gerar quiz" /></Button>
                     </Form>
                 </FormContainer>
 

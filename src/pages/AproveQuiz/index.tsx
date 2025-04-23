@@ -58,7 +58,7 @@ const aproveItens:QuizAproveItem[] =[
 
 function AproveQuiz(){
     
-    const { quizId } = useParams();
+    const { draftId } = useParams();
 
     return(
         <DefaultContainer>
@@ -68,7 +68,7 @@ function AproveQuiz(){
             </DefaultHeader>
             <DefaultBody>
                 <DefaultTitle>
-                    <h2>Avalie abaixo as questões geradas pela IA</h2>
+                    <h2>Avalie abaixo as questões geradas pela IA:{draftId}</h2>
                     <ApproveButton onClick={() => alert("Clicou em aprovar")}>
                         Aprovar quiz
                     </ApproveButton>
